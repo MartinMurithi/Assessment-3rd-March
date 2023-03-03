@@ -3,30 +3,31 @@
 
 import React, { useReducer } from 'react'
 
-function reducer(count, action) {
+function reducer(state, action) {
     switch (action.type) {
         case 'hover.type':
-            return count + 1;
+            return state.count + 1;
         case 'click.type':
-            return count - 1;
+            return state.count - 1;
         case 'reset.type':
             return 0;
         default:
-            ''
+            throw new Error()
     }
 }
 
 function Reducer() {
 
-    const [count, dispatch] = useReducer(reducer, 0);
+    const [state, dispatch] = useReducer(reducer, {count : 0});
 
-    function 
+    function handleIncreament() {
+        dispatch({ type: 'increament' })
+    }
 
   return (
       <div>
-          <h4>{ count}</h4>
-          <button onClick={(() => dispatch({ type: hover }))}>-</button>
-        <button onClick={(() => dispatch({ type: click }))}>+</button>
+          <h4 onMouseOver={handleIncreament}>SOFTWARE ENGINEERING, { state.count } </h4>
+        <button >+</button>
     </div>
   )
 }
